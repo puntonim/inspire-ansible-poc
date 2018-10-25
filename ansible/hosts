@@ -1,0 +1,16 @@
+[qa]
+inspire-qa-worker3-task1.cern.ch
+inspire-qa-worker3-task2.cern.ch
+
+[tasks-prod]
+inspire-prod-worker3-task1
+inspire-prod-worker3-task2
+inspire-prod-worker3-task3
+inspire-prod-worker3-task4
+inspire-prod-worker3-task5
+inspire-prod-worker3-task6
+inspire-prod-worker3-task7
+inspire-prod-worker3-task8
+inspire-prod-worker3-task9
+inspire-prod-worker3-task10
+inspire-prod-worker3-task11

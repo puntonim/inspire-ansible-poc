@@ -1,0 +1,32 @@
+---
+- hosts: tasks-prod
+  tasks:
+#  - name: ensure apache is at the latest version
+#      shell: ls -alhs
+#  - fetch:
+#      src: /var/log/nginx/access.log-20180222.gz
+#      dest: ./fetched/
+#    become: true
+#  - fetch:
+#      src: /var/log/nginx/error.log-20180330.gz
+#      dest: ./fetched/
+  # - fetch:
+  #     src: /var/log/supervisor/celery-worker.err
+  #     dest: ./fetched/
+  #   become: true
+
+    # - name: kill MainProcess
+    #   shell: ps -ef | grep MainProcess | grep -v grep | awk '{print $2}' | xargs kill -9
+    #   become: true
+    #
+    # - name: kill ForkPoolWorker
+    #   shell: ps -ef | grep ForkPoolWorker | grep -v grep | awk '{print $2}' | xargs kill -9
+    #   become: true
+    #
+    # - name: stop supervisord celeryd
+    #   shell: supervisorctl stop regular:celeryd
+    #   become: true
+
+    - name: kill all celeryd
+      shell: ps -ef | grep celeryd | grep -v grep | grep -v memmon | awk '{print $2}' | xargs kill -9
+      become: true
