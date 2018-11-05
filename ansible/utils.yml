@@ -1,5 +1,5 @@
 ---
-- hosts: inspire-prod-worker3-task1
+- hosts: prod
   tasks:
     - name: git log
       shell: git log -10
@@ -7,7 +7,7 @@
         chdir: /opt/inspire/src/inspire
       tags:
         - git-log-prod
-      register: result  
+      register: result
     - debug:
         var: result
         verbosity: 0

@@ -1,0 +1,46 @@
+# Fetch code locally
+
+# For all qa-task machines, 2 at a time:
+# check shell open and kill them
+# disable roger, nagios, puppet, lemon
+# stop services in supervisord
+# move the code there
+
+# For qa-webset1 first and then qa-webset1:
+# remove from lb
+# same ops as qa-tasks
+# add to lb
+
+# Use serial for a rolling update:
+# https://docs.ansible.com/ansible/2.7/user_guide/playbooks_delegation.html#rolling-update-batch-size
+
+# ansible-playbook deploy.yml -i hosts -v
+---
+
+# TODO: study roles before moving forward because it is coll for splitting playbooks
+
+- hosts: inspire-qa-worker3-task7.cern.ch
+  tasks:
+    - name: Check for opens shells
+      shell: pgrep -f "inspirehep shell"
+      ignore_errors: yes
+      become: true
+      register: processes_pids
+
+    - name: Kill running shells
+      shell: "kill {{ item }}"
+      with_items: "{{ processes_pids.stdout_lines }}"
+      ignore_errors: yes
+      become: true
+
+    - wait_for: Check if the shells were killed
+        path: "/proc/{{ item }}/status"
+        state: absent
+      with_items: "{{ processes_pids.stdout_lines }}"
+      ignore_errors: yes
+      register: killed_processes_pids
+
+    - name: Force kill stuck shells
+      shell: "kill -9 {{ item }}"
+      with_items: "{{ killed_processes_pids.results | select('failed') | map(attribute='item') | list }}"
+      become: true
