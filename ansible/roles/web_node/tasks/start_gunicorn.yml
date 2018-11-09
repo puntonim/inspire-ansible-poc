@@ -1,0 +1,15 @@
+---
+- name: Supervisor to start gunicorn
+  supervisorctl:
+    name: 'gunicorn'
+    state: started
+  become: true
+
+- name: Ensure GET /health returns 200 OK
+  uri:
+    url: https://127.0.0.1:443/health/
+    validate_certs: no
+    headers:
+      Host: "{{ prefix + '.inspirehep.net' }}"
+  vars:
+    prefix: "{{ 'labs' if env == 'prod' else env }}"

@@ -1,0 +1,17 @@
+---
+- name: Checkout the new code
+  git:
+    repo: 'https://github.com/inspirehep/inspire-next.git'
+    dest: /opt/inspire/src/inspire
+    version: "{{ code_version }}"
+  become: yes
+  become_user: inspire
+
+- name: Build the virtual environment
+  pip:
+    chdir: /opt/inspire/src/inspire
+    requirements: requirements.txt
+    virtualenv: /opt/inspire
+    extra_args: "-r requirements-xrootd.txt --upgrade --force-reinstall --pre -e .[crawler-node,web-node,worker-node,build-node,xrootd] --src ../"
+  become: yes
+  become_user: inspire

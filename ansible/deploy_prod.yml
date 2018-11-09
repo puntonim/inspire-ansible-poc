@@ -1,0 +1,17 @@
+---
+
+- hosts:  prod-task
+  roles:
+    - task_node
+  vars:
+    - code_version: prod
+    - env: prod
+  serial: 4
+
+- hosts:  prod-web
+  roles:
+     - web_node
+  vars:
+    - code_version: prod
+    - env: prod
+  serial: 1

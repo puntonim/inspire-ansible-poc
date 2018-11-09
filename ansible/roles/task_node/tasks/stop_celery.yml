@@ -1,0 +1,10 @@
+---
+- name: Supervisor to stop regular:*
+  supervisorctl:
+    name: 'regular:'
+    state: stopped
+  become: true
+
+- name: Ensure the indexer is not running (failure means there is an ongoing indexing)
+  shell: 'supervisorctl status indexer: | grep STOPPED'
+  become: true

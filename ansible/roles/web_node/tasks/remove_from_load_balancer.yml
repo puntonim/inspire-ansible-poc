@@ -1,0 +1,23 @@
+# Note: using the proper HAProxy Ansible module would be better.
+# But it requires HAProxy to use a sock file rather than a port (this means
+# a change in haproxy.cfg).
+---
+
+# Disable the current machine
+# from the backends=['inspire_qa_app', 'inspire_qa_static', 'ssl_inspire_qa_app', 'ssl_inspire_qa_static']
+# and from all the load balancers=groups[qa-lbs]
+- name: Remove from load balancers
+  shell: 'echo "disable server {{ item.0 }}/{{ inventory_hostname }}" | nc 127.0.0.1 14567'
+  become: true
+  delegate_to: '{{ item.1 }}'
+  vars:
+    ha_bakends:
+      - "{{ 'inspire_' + env + '_app' }}"
+      - "{{ 'inspire_' + env + '_static' }}"
+      - "{{ 'ssl_inspire_' + env + '_app' }}"
+      - "{{ 'ssl_inspire_' + env + '_static' }}"
+    lb_machines: "{{ groups[env+'-lbs'] }}"
+  loop: "{{ ha_bakends|product(lb_machines)|list }}"
+
+
+

@@ -1,7 +1,7 @@
-[qa-webset1]  # Gunicorn.
-inspire-qa-worker3-web1.cern.ch
+## QA  ########################################################################
 
-[qa-webset2]  # Gunicorn.
+[qa-web]  # Gunicorn.
+inspire-qa-worker3-web1.cern.ch
 inspire-qa-worker3-web2.cern.ch
 
 [qa-task]  # Celery.
@@ -33,25 +33,77 @@ inspire-qa-search5-data6.cern.ch
 inspire-qa-lb1.cern.ch
 inspire-qa-lb2.cern.ch
 
-[qa-crawler]  # HepCrawl??
+[qa-crawler]  # HepCrawl.
 inspire-qa-crawler1.cern.ch
 
 [qa-broker]  # RabbitMQ.
 inspire-qa-broker1.cern.ch
 
+[qa-monitor]
+inspire-qa-monitor1.cern.ch
 
 [qa:children]
-qa-webset1
-qa-webset2
+qa-web
 qa-task
 qa-search
 qa-lbs
 qa-crawler
 qa-broker
+qa-monitor
 
 
-[prod-task]
+
+## PROD  ######################################################################
+
+[prod-web]  # Gunicorn.
+inspire-prod-worker3-web1.cern.ch
+inspire-prod-worker3-web2.cern.ch
+
+[prod-task]  # Celery.
 inspire-prod-worker3-task1.cern.ch
+inspire-prod-worker3-task2.cern.ch
+inspire-prod-worker3-task3.cern.ch
+inspire-prod-worker3-task4.cern.ch
+inspire-prod-worker3-task5.cern.ch
+inspire-prod-worker3-task6.cern.ch
+inspire-prod-worker3-task7.cern.ch
+inspire-prod-worker3-task8.cern.ch
+inspire-prod-worker3-task9.cern.ch
+inspire-prod-worker3-task10.cern.ch
+inspire-prod-worker3-task11.cern.ch
+
+[prod-search]  # Elasticsearch.
+inspire-prod-search5-master.cern.ch
+inspire-prod-search5-client1.cern.ch
+inspire-prod-search5-client2.cern.ch
+inspire-prod-search5-client3.cern.ch
+inspire-prod-search5-data1.cern.ch
+inspire-prod-search5-data2.cern.ch
+inspire-prod-search5-data3.cern.ch
+inspire-prod-search5-data4.cern.ch
+inspire-prod-search5-data5.cern.ch
+inspire-prod-search5-data6.cern.ch
+
+[prod-lbs]  # HAProxy.
+inspire-prod-lb1.cern.ch
+inspire-prod-lb2.cern.ch
+
+[prod-crawler]  # HepCrawl.
+inspire-prod-crawler1.cern.ch
+
+[prod-broker]  # RabbitMQ.
+inspire-prod-broker1.cern.ch
+
+[prod-monitor]
+inspire-prod-monitor1.cern.ch
+
+
 
 [prod:children]
+prod-web
 prod-task
+prod-search
+prod-lbs
+prod-crawler
+prod-broker
+prod-monitor

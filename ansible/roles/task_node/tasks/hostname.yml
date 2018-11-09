@@ -1,0 +1,9 @@
+---
+- name: Hostname
+  shell: "hostname"
+  register: result
+
+- name: Deugging
+  debug:
+    var: result
+    verbosity: 0

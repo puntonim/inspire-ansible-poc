@@ -1,0 +1,6 @@
+---
+- name: Supervisor to start regular:*
+  supervisorctl:
+    name: 'regular:'
+    state: started
+  become: true

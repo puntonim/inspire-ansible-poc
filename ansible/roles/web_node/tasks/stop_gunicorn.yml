@@ -1,0 +1,6 @@
+---
+- name: Supervisor to stop gunicorn
+  supervisorctl:
+    name: 'gunicorn'
+    state: stopped
+  become: true

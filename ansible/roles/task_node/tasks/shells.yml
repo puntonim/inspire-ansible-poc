@@ -1,0 +1,29 @@
+---
+- name: Check for open shells (ignore failure as it means there is no open shell)
+  shell: pgrep -f "inspirehep shell"
+  ignore_errors: yes
+  become: true
+  register: processes_pids
+
+- name: Gracefully kill running shells
+  when: processes_pids is succeeded
+  shell: 'kill {{ item }}'
+  with_items: '{{ processes_pids.stdout_lines }}'
+  ignore_errors: yes
+  become: true
+
+- name: Wait for the the shells to gracefully die
+  when: processes_pids is succeeded
+  wait_for:
+    timeout: 30
+    path: '/proc/{{ item }}/status'
+    state: absent
+  with_items: '{{ processes_pids.stdout_lines }}'
+  ignore_errors: yes
+  register: killed_processes_pids
+
+- name: Force kill stuck shells
+  when: killed_processes_pids is failed
+  shell: 'kill -9 {{ item }}'
+  with_items: "{{ killed_processes_pids.results | select('failed') | map(attribute='item') | list }}"
+  become: true

@@ -1,0 +1,12 @@
+---
+- name: Disable roger
+  shell: roger update --all_alarms false $(hostname)
+  become: true
+
+- name: Disable nagios
+  nagios:
+    action: disable_alerts
+    service: all
+    host: '{{ inventory_hostname }}'
+  delegate_to: "{{ groups[env+'-monitor'][0] }}"
+  become: true

@@ -1,0 +1,19 @@
+---
+- name: Run npm install
+  shell: |
+    source /etc/bashrc && \
+    npm install node-sass@3.8.0 clean-css@^3.4.24 requirejs uglify-js
+  args:
+    chdir: /opt/inspire/src/inspire
+  become: yes
+  become_user: inspire
+
+- name: Run clean_assets script
+  shell: |
+    source /etc/bashrc && \
+    source /opt/inspire/bin/activate && \
+    scripts/clean_assets
+  args:
+    chdir: /opt/inspire/src/inspire
+  become: yes
+  become_user: inspire

@@ -1,0 +1,6 @@
+---
+# Those variables are required in order to run this role.
+# Do not use defaults here but pass them explicitly in the playbook.
+
+# code_version: master
+# env: qa

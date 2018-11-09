@@ -1,0 +1,27 @@
+---
+- name: 1/9. Close shells
+  import_tasks: roles/task_node/tasks/shells.yml
+
+- name: 2/9. Disable alarms
+  import_tasks: roles/task_node/tasks/disable_alarms.yml
+
+- name: 3/9. Remove from load balancers
+  import_tasks: remove_from_load_balancer.yml
+
+- name: 4/9. Stop Gunicorn
+  import_tasks: stop_gunicorn.yml
+
+- name: 5/9. Checkout the new Python code and build venv
+  import_tasks: roles/task_node/tasks/python_code_and_venv.yml
+
+- name: 6/9. Build frontend assets
+  import_tasks: frontend_assets.yml
+
+- name: 7/9. Start Gunicorn
+  import_tasks: start_gunicorn.yml
+
+- name: 8/9. Add to the load balancers
+  import_tasks: add_to_load_balancer.yml
+
+- name: 9/9. Enable alarms
+  import_tasks: roles/task_node/tasks/enable_alarms.yml

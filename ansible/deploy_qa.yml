@@ -1,0 +1,17 @@
+---
+
+- hosts:  qa-task
+  roles:
+    - task_node
+  vars:
+    - code_version: master
+    - env: qa
+  serial: 4
+
+- hosts:  qa-web
+  roles:
+     - web_node
+  vars:
+    - code_version: master
+    - env: qa
+  serial: 1
