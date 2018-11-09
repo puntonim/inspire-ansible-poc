@@ -24,4 +24,4 @@ logging:
   loglevel: INFO
   logfile:
   logformat: default
-  blacklist: ['elasticsearch', 'urllib3']
+  blacklist: []
