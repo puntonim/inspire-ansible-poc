@@ -39,12 +39,18 @@ Thus, you have to make sure yourself that the codechange you are deploying
 does not include such operations before using the deployments playbook *
 
 - Deploy to QA (git branch `master` by default):
+$ make deploy/qa
+Or:
 $ ansible-playbook deploy_qa.yml -i hosts
 
 - Deploy to PROD (git branch `prod` by default):
+$ make deploy/prod
+Or:
 $ ansible-playbook deploy_prod.yml -i hosts
 
 - Chose a specific code version:
+$ make deploy/qa/v0.12.7
+Or:
 $ ansible-playbook deploy_qa.yml -i hosts --extra-vars "code_version=master"
 $ ansible-playbook deploy_qa.yml -i hosts --extra-vars "code_version=5b1682d10c66505c4995f24dce59bc11f8e4a4bd"
 $ ansible-playbook deploy_qa.yml -i hosts --extra-vars "code_version=v0.12.7"

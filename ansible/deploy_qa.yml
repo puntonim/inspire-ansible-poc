@@ -1,6 +1,6 @@
 ---
 
-- hosts:  qa-task
+- hosts: qa-task
   roles:
     - task_node
   vars:
@@ -8,7 +8,7 @@
     - env: qa
   serial: 4
 
-- hosts:  qa-web
+- hosts: qa-web
   roles:
      - web_node
   vars:
