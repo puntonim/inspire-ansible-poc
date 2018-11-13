@@ -1,0 +1,10 @@
+---
+- name: Run scrapyd-deploy
+  shell: |
+    source /etc/bashrc && \
+    source /opt/inspire/bin/activate && \
+    sed -i -e s/scrapyd/localhost/g scrapy.cfg && \
+    scrapyd-deploy
+  args:
+    chdir: /opt/inspire/lib/python2.7/site-packages/hepcrawl
+  become: yes

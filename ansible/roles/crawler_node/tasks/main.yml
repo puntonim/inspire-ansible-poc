@@ -1,18 +1,16 @@
 ---
+- import_tasks: check_spider_jobs.yml
+
 - import_tasks: roles/task_node/tasks/close_shells.yml
 
 - import_tasks: roles/task_node/tasks/disable_alarms.yml
 
-- import_tasks: remove_from_load_balancer.yml
-
-- import_tasks: stop_gunicorn.yml
+- import_tasks: stop_crawler.yml
 
 - import_tasks: roles/task_node/tasks/update_python_code_and_venv.yml
 
-- import_tasks: build_frontend_assets.yml
+- import_tasks: start_crawler.yml
 
-- import_tasks: start_gunicorn.yml
-
-- import_tasks: add_to_load_balancer.yml
+- import_tasks: scrapyd_deploy.yml
 
 - import_tasks: roles/task_node/tasks/enable_alarms.yml

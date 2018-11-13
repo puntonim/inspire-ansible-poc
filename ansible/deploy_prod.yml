@@ -1,4 +1,11 @@
 ---
+- hosts: qa-crawler
+  roles:
+    - crawler_node
+  vars:
+    - code_version: prod
+    - env: prod
+
 
 - hosts:  prod-task
   roles:
@@ -7,6 +14,7 @@
     - code_version: prod
     - env: prod
   serial: 4
+
 
 - hosts:  prod-web
   roles:

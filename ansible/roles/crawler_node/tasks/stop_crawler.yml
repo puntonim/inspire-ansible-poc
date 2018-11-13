@@ -1,0 +1,6 @@
+---
+- name: Supervisor to stop scrapyd
+  supervisorctl:
+    name: 'scrapyd'
+    state: stopped
+  become: true

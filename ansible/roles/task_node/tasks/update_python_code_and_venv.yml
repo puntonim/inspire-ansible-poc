@@ -7,6 +7,14 @@
   become: yes
   become_user: inspire
 
+- name: Update pip
+  pip:
+    name: pip
+    state: latest
+    virtualenv: /opt/inspire
+  become: yes
+  become_user: inspire
+
 - name: Build the virtual environment
   pip:
     chdir: /opt/inspire/src/inspire

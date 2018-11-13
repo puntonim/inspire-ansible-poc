@@ -1,0 +1,8 @@
+---
+- name: Ensure there is no spider job running
+  shell: |
+    curl -s http://localhost:6800/listjobs.json?project=hepcrawl | jq '.running'
+  args:
+    warn: false
+  register: result
+  failed_when: result.stdout != '[]'

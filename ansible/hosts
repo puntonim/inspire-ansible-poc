@@ -97,8 +97,6 @@ inspire-prod-broker1.cern.ch
 [prod-monitor]
 inspire-prod-monitor1.cern.ch
 
-
-
 [prod:children]
 prod-web
 prod-task
