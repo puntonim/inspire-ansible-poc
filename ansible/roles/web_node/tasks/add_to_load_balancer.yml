@@ -11,10 +11,10 @@
   become: true
   delegate_to: '{{ item.1 }}'
   vars:
-    ha_bakends:
+    ha_backends:
       - "{{ 'inspire_' + env + '_app' }}"
       - "{{ 'inspire_' + env + '_static' }}"
       - "{{ 'ssl_inspire_' + env + '_app' }}"
       - "{{ 'ssl_inspire_' + env + '_static' }}"
     lb_machines: "{{ groups[env+'-lbs'] }}"
-  loop: "{{ ha_bakends|product(lb_machines)|list }}"
+  loop: "{{ ha_backends|product(lb_machines)|list }}"
