@@ -9,6 +9,8 @@
 
 - import_tasks: roles/task_node/tasks/update_python_code_and_venv.yml
 
+- import_tasks: roles/task_node/tasks/copy_config_file.yml
+
 - import_tasks: build_frontend_assets.yml
 
 - import_tasks: start_gunicorn.yml

@@ -1,0 +1,22 @@
+# Note: the Ansible `synchronize` method with `delegate_to` is supposed to be
+# the right ool to copy a file from a remote machine to another remote
+# machine. But it fails with the error: "Could not create directory '/.ssh'"
+---
+- name: Copy inspirehep.cfg from the build machine to localhost
+  fetch:
+    src: /opt/inspire/var/inspirehep-instance/inspirehep.cfg
+    dest: /tmp/{{ groups[env+'-build'][0] }}/inspirehep.cfg
+    flat: yes
+  delegate_to: "{{ groups[env+'-build'][0] }}"
+  become: yes
+  become_user: inspire
+
+
+- name: Copy inspirehep.cfg from localhost to the node
+  copy:
+    src: /tmp/{{ groups[env+'-build'][0] }}/inspirehep.cfg
+    dest: /opt/inspire/var/inspirehep-instance/inspirehep.cfg
+    owner: inspire
+    group: inspire
+    mode: u=rw,g=,o=
+  become: yes

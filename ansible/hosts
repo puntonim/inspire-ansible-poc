@@ -42,6 +42,9 @@ inspire-qa-broker1.cern.ch
 [qa-monitor]
 inspire-qa-monitor1.cern.ch
 
+[qa-build]
+inspire-qa-worker3-build1.cern.ch
+
 [qa:children]
 qa-web
 qa-task
@@ -50,6 +53,7 @@ qa-lbs
 qa-crawler
 qa-broker
 qa-monitor
+qa-build
 
 
 
@@ -97,6 +101,9 @@ inspire-prod-broker1.cern.ch
 [prod-monitor]
 inspire-prod-monitor1.cern.ch
 
+[prod-build]
+inspire-prod-worker3-build1.cern.ch
+
 [prod:children]
 prod-web
 prod-task
@@ -105,3 +112,4 @@ prod-lbs
 prod-crawler
 prod-broker
 prod-monitor
+prod-build

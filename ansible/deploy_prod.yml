@@ -16,7 +16,7 @@
   serial: 4
 
 
-- hosts:  prod-web
+- hosts: prod-web
   roles:
      - web_node
   vars:
