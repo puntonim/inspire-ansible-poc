@@ -3,12 +3,15 @@
 *THIS IS A STILL WORK IN PROGRESS, USE WITH CAUTION!*
 
 
-- First, get a Kerberos ticket:
+- Firstly, get a Kerberos ticket and set the env var KERBEROS_USERNAME:
 ```bash
 $ kinit myuser@CERN.CH
+$ export KERBEROS_USERNAME=myuser
 ```
 
 ## SPECIFIC COMMANDS
+
+- Note
 
 - Run a specific command on a specific host:
 ```bash

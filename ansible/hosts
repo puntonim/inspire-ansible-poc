@@ -113,3 +113,16 @@ prod-crawler
 prod-broker
 prod-monitor
 prod-build
+
+
+[all:vars]
+ansible_ssh_user={{ lookup('env','KERBEROS_USERNAME') }}
+ansible_ssh_common_args='-F ssh.cfg'
+
+[qa:vars]
+env=qa
+code_version=master
+
+[prod:vars]
+env=prod
+code_version=prod
