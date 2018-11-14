@@ -83,3 +83,6 @@ needed by the specific node.
     a new virtual environment in that dir, then create a symbolic link from
     a dir "current" to "v0.12.10". Celery, Gunicorn and all the stack always
     point to the "current" dir. After changing the symlink they are restarted.
+  - move Flask config files (inspirehep.cfg) into this repository. You might
+    also use Ansible Vault for the secrets included in the config (and move
+    away from TEIGI/tbag)

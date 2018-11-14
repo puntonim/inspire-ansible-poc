@@ -3,3 +3,4 @@ fetched
 .DS_Store
 *.retry
 venv/
+ansible.log
