@@ -10,3 +10,7 @@
     host: '{{ inventory_hostname }}'
   delegate_to: "{{ groups[env+'-monitor'][0] }}"
   become: true
+
+- name: Enable lemon
+  shell: /sbin/service lemon-agent start && /sbin/service lemon-forwarder start
+  become: true

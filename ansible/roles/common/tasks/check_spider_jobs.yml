@@ -6,3 +6,5 @@
     warn: false
   register: result
   failed_when: result.stdout != '[]'
+  run_once: true
+  delegate_to: "{{ groups[env+'-crawler'][0] }}"

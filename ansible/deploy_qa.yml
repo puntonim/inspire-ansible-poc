@@ -1,16 +1,19 @@
 ---
-- hosts: qa-crawler
+# Note: strategy: free is discouraged for deploys in production.
+# By default, plays run with a linear strategy: all hosts run each
+# task before any host starts the next task.
+# With a free strategy instead each host runs until the end of the play
+# as fast as it can resulting in faster plays, but harder to debug
+# in case of errors.
+
+- hosts: qa-deploy-batch1
+  pre_tasks:
+    - import_tasks: roles/common/tasks/check_spider_jobs.yml
   roles:
-    - crawler_node
+    - common
+  strategy: free
 
-
-- hosts: qa-task
+- hosts: qa-deploy-batch2
   roles:
-    - task_node
-  serial: 4
-
-
-- hosts: qa-web
-  roles:
-     - web_node
-  serial: 1
+    - common
+  strategy: free

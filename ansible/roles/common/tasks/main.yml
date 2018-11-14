@@ -1,0 +1,40 @@
+---
+- import_tasks: close_shells.yml
+
+- import_tasks: disable_alarms.yml
+
+- import_tasks: stop_celery.yml
+  when: inventory_hostname in groups['qa-task']
+
+- import_tasks: remove_from_load_balancer.yml
+  when: inventory_hostname in groups['qa-web']
+
+- import_tasks: stop_gunicorn.yml
+  when: inventory_hostname in groups['qa-web']
+
+- import_tasks: stop_crawler.yml
+  when: inventory_hostname in groups['qa-crawler']
+
+- import_tasks: update_python_code_and_venv.yml
+
+- import_tasks: copy_config_file.yml
+
+- import_tasks: start_celery.yml
+  when: inventory_hostname in groups['qa-task']
+
+- import_tasks: build_frontend_assets.yml
+  when: inventory_hostname in groups['qa-web']
+
+- import_tasks: start_gunicorn.yml
+  when: inventory_hostname in groups['qa-web']
+
+- import_tasks: add_to_load_balancer.yml
+  when: inventory_hostname in groups['qa-web']
+
+- import_tasks: start_crawler.yml
+  when: inventory_hostname in groups['qa-crawler']
+
+- import_tasks: scrapyd_deploy.yml
+  when: inventory_hostname in groups['qa-crawler']
+
+- import_tasks: enable_alarms.yml

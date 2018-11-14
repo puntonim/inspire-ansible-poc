@@ -55,6 +55,24 @@ qa-broker
 qa-monitor
 qa-build
 
+[qa-deploy-batch1]
+inspire-qa-worker3-web1.cern.ch
+inspire-qa-worker3-task1.cern.ch
+inspire-qa-worker3-task2.cern.ch
+inspire-qa-worker3-task3.cern.ch
+inspire-qa-worker3-task4.cern.ch
+inspire-qa-worker3-task5.cern.ch
+inspire-qa-worker3-task6.cern.ch
+
+[qa-deploy-batch2]
+inspire-qa-worker3-web2.cern.ch
+inspire-qa-worker3-task7.cern.ch
+inspire-qa-worker3-task8.cern.ch
+inspire-qa-worker3-task9.cern.ch
+inspire-qa-worker3-task10.cern.ch
+inspire-qa-worker3-task11.cern.ch
+inspire-qa-crawler1.cern.ch
+
 
 
 ## PROD  ######################################################################
@@ -114,6 +132,27 @@ prod-broker
 prod-monitor
 prod-build
 
+[prod-deploy-batch1]
+inspire-prod-worker3-web1.cern.ch
+inspire-prod-worker3-task1.cern.ch
+inspire-prod-worker3-task2.cern.ch
+inspire-prod-worker3-task3.cern.ch
+inspire-prod-worker3-task4.cern.ch
+inspire-prod-worker3-task5.cern.ch
+inspire-prod-worker3-task6.cern.ch
+
+[prod-deploy-batch2]
+inspire-prod-worker3-web2.cern.ch
+inspire-prod-worker3-task7.cern.ch
+inspire-prod-worker3-task8.cern.ch
+inspire-prod-worker3-task9.cern.ch
+inspire-prod-worker3-task10.cern.ch
+inspire-prod-worker3-task11.cern.ch
+inspire-prod-crawler1.cern.ch
+
+
+
+## VARS #######################################################################
 
 [all:vars]
 ansible_ssh_user={{ lookup('env','KERBEROS_USERNAME') }}
